@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2018. Kristoffer Schneider Licensed under the Apache-2.0 License.
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="strainlog.android.falx.tech.strainlog">
 
@@ -12,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ItemListActivity"
+            android:name=".ui.activity.ItemListActivity"
             android:label="@string/title_item_list"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,13 +26,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ItemDetailActivity"
+            android:name=".ui.activity.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ItemListActivity"
+            android:parentActivityName=".ui.activity.ItemListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="strainlog.android.falx.tech.strainlog.ItemListActivity"/>
+                android:value="strainlog.android.falx.tech.strainlog.ui.activity.ItemListActivity"/>
         </activity>
     </application>
 

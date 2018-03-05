@@ -1,3 +1,7 @@
+<!--
+  ~ Copyright (c) 2018. Kristoffer Schneider Licensed under the Apache-2.0 License.
+  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +13,7 @@
               android:divider="?android:attr/dividerHorizontal"
               android:orientation="horizontal"
               android:showDividers="middle"
-              tools:context="strainlog.android.falx.tech.strainlog.ItemListActivity">
+              tools:context="strainlog.android.falx.tech.strainlog.ui.activity.ItemListActivity">
 
     <!--
     This layout is a two-pane layout for the Items
@@ -26,7 +30,7 @@
                                             android:layout_marginLeft="16dp"
                                             android:layout_marginRight="16dp"
                                             app:layoutManager="LinearLayoutManager"
-                                            tools:context="strainlog.android.falx.tech.strainlog.ItemListActivity"
+                                            tools:context="strainlog.android.falx.tech.strainlog.ui.activity.ItemListActivity"
                                             tools:listitem="@layout/item_list_content"/>
 
     <FrameLayout

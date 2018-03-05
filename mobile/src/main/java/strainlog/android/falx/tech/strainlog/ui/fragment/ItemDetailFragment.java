@@ -1,15 +1,21 @@
-package strainlog.android.falx.tech.strainlog;
+/*
+ * Copyright (c) 2018. Kristoffer Schneider Licensed under the Apache-2.0 License.
+ */
+
+package strainlog.android.falx.tech.strainlog.ui.fragment;
 
 import android.app.Activity;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import strainlog.android.falx.tech.strainlog.R;
 import strainlog.android.falx.tech.strainlog.dummy.DummyContent;
+import strainlog.android.falx.tech.strainlog.ui.activity.ItemDetailActivity;
+import strainlog.android.falx.tech.strainlog.ui.activity.ItemListActivity;
 
 /**
  * A fragment representing a single Item detail screen.
@@ -48,7 +54,7 @@ public class ItemDetailFragment extends Fragment {
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout =
-                    (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+                    activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
                 appBarLayout.setTitle(mItem.content);
             }
