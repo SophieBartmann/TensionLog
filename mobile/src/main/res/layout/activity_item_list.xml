@@ -9,7 +9,7 @@
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
                                                  android:fitsSystemWindows="true"
-                                                 tools:context="strainlog.android.falx.tech.strainlog.ui.activity.ItemListActivity">
+                                                 tools:context="tech.falx.tensionlog.ui.activity.ItemListActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

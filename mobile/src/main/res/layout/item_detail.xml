@@ -1,24 +1,107 @@
-<android.support.v7.widget.LinearLayoutCompat
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout>
+    <data class="tech.falx.tensionlog.ui.binding.ItemDetailBinding">
+        <variable name="vm" type="tech.falx.tensionlog.ui.viewmodel.TensionVM"/>
+    </data>
 
-    <TextView
-        android:id="@+id/textView2"
+    <android.support.v7.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Strain:"/>
+        android:orientation="vertical"
+        android:padding="12dp">
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="5"/>
+        <TextView
+            android:id="@+id/tensionSeekBarLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/seekBar"
+            android:text="@string/tension"
+            android:paddingTop="@dimen/linearVertPadding"/>
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</android.support.v7.widget.LinearLayoutCompat>
+        <SeekBar
+            android:id="@+id/tensionSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:value="@{vm.tensionEntry.tension}"/>
+
+        <TextView
+            android:id="@+id/locationLabel"
+            android:labelFor="@id/locationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/location"
+            android:paddingTop="@dimen/linearVertPadding"/>
+
+        <EditText
+            android:id="@+id/locationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/location"
+            android:text="@{vm.tensionEntry.location}"/>
+
+        <TextView
+            android:id="@+id/situationLabel"
+            android:labelFor="@id/situationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/situation"
+            android:paddingTop="@dimen/linearVertPadding"/>
+
+        <EditText
+            android:id="@+id/situationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/situation"
+            android:text="@{vm.tensionEntry.situation}"/>
+
+        <TextView
+            android:id="@+id/skillUsedLabel"
+            android:labelFor="@id/skillUsedEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_used"
+            android:paddingTop="@dimen/linearVertPadding"/>
+
+        <EditText
+            android:id="@+id/skillUsedEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{vm.tensionEntry.skill}"
+            android:hint="@string/skill_used"/>
+
+        <TextView
+            android:id="@+id/skillDurationLabel"
+            android:labelFor="@id/skillDurationSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/skill_duration"
+            android:paddingTop="@dimen/linearVertPadding"/>
+
+        <SeekBar
+            android:id="@+id/skillDurationSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:value="@{vm.tensionEntry.skillDuartion}"
+            android:max="120"/>
+
+        <TextView
+            android:id="@+id/tensionAfterSeekBarLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/tensionAfterSeekBar"
+            android:text="@string/tension_after_label"
+            android:paddingTop="@dimen/linearVertPadding"/>
+
+        <SeekBar
+            android:id="@+id/tensionAfterSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:value="@{vm.tensionEntry.tension}"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+</layout>

@@ -9,7 +9,7 @@ apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "strainlog.android.falx.tech.strainlog"
+        applicationId "strainlog.falx.strainlog"
         minSdkVersion 23
         targetSdkVersion 26
         versionCode 1

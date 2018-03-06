@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">Strain Log</string>
+    <string name="app_name">Tension Log</string>
     <string name="title_entry_detail">Entry Detail</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="tension">Tension</string>
+    <string name="location">Location</string>
+    <string name="situation">Situation</string>
+    <string name="skill_used">Skill used</string>
+    <string name="skill_duration">Duration of the skill</string>
+    <string name="tension_after_label">Tension after doing the skill</string>
 </resources>
