@@ -6,6 +6,7 @@ package tech.falx.tensionlog.db.entity;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.NotNull;
 
@@ -17,21 +18,40 @@ import java.util.Date;
 
 @Entity(nameInDb = "TensionEntry", indexes = {@Index(value = "date DESC")})
 public class TensionEntryEntity extends BaseEntity {
+    @Id
+    protected Long id = -1L;
     @NotNull
-    private Date date;
+    protected Date created = new Date();
     @NotNull
-    private Integer tension;
-    private String location;
-    private String situation;
-    private String skill;
-    private Integer tensionAfter;
-    private String emotion;
-    private Integer skillDuration;
-    private String notes;
+    protected Date updated = new Date();
+    @NotNull
+    private Date date = new Date();
+    @NotNull
+    private Integer tension = 0;
+    private String location = "";
+    private String situation = "";
+    private String skill = "";
+    private Integer tensionAfter = 0;
+    private String emotion = "";
+    private Integer skillDuration = 0;
+    private String notes = "";
 
-    @Generated(hash = 37104366)
-    public TensionEntryEntity(@NotNull Date date, @NotNull Integer tension, String location, String situation, String skill,
-            Integer tensionAfter, String emotion, Integer skillDuration, String notes) {
+    @Generated(hash = 1368940128)
+    public TensionEntryEntity(Long id,
+                              @NotNull Date created,
+                              @NotNull Date updated,
+                              @NotNull Date date,
+                              @NotNull Integer tension,
+                              String location,
+                              String situation,
+                              String skill,
+                              Integer tensionAfter,
+                              String emotion,
+                              Integer skillDuration,
+                              String notes) {
+        this.id = id;
+        this.created = created;
+        this.updated = updated;
         this.date = date;
         this.tension = tension;
         this.location = location;
@@ -125,6 +145,22 @@ public class TensionEntryEntity extends BaseEntity {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public Date getCreated() {
+        return this.created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getUpdated() {
+        return this.updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 
 

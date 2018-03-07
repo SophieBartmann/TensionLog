@@ -38,8 +38,13 @@ public class App extends Application {
         Database db = null;
         if (IS_DB_ENCRYPTED) {
             dbHelper = new DaoMaster.DevOpenHelper(this, ENCRYPTED_DB);
-            db = dbHelper.getEncryptedWritableDb()
-
+            // TODO: CHANGE!
+            db = dbHelper.getEncryptedWritableDb("Super-Secret-PW");
+            this.daoSession = new DaoMaster(db).newSession();
+        } else {
+            dbHelper = new DaoMaster.DevOpenHelper(this, NON_ENCRYPTED_DB);
+            db = dbHelper.getWritableDb();
+            this.daoSession = new DaoMaster(db).newSession();
         }
     }
 

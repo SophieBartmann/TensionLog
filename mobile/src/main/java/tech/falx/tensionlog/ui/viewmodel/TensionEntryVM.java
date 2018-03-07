@@ -6,6 +6,8 @@ package tech.falx.tensionlog.ui.viewmodel;
 
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
+
+import tech.falx.tensionlog.db.entity.DaoSession;
 import tech.falx.tensionlog.db.entity.TensionEntryEntity;
 
 /**
@@ -34,7 +36,7 @@ public class TensionEntryVM extends BaseVM {
 
 
     @Override
-    public void saveEntities() {
+    public void saveEntities(DaoSession daoSession) {
 
     }
 }
