@@ -8,6 +8,6 @@ package tech.falx.tensionlog.ui.viewmodel;
  * @author <a href="mailto:kschneider@codingfalx.de">Kristoffer Schneider alias falx<a>
  */
 
-public class BaseVM {
-
+public abstract class BaseVM {
+    public abstract void saveEntities();
 }

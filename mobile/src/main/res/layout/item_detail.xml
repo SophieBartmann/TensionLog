@@ -1,6 +1,6 @@
 <layout>
     <data class="tech.falx.tensionlog.ui.binding.ItemDetailBinding">
-        <variable name="vm" type="tech.falx.tensionlog.ui.viewmodel.TensionVM"/>
+        <variable name="vm" type="tech.falx.tensionlog.ui.viewmodel.TensionEntryVM"/>
     </data>
 
     <android.support.v7.widget.LinearLayoutCompat
@@ -14,7 +14,7 @@
             android:id="@+id/tensionSeekBarLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@id/seekBar"
+            android:labelFor="@id/tensionSeekBar"
             android:text="@string/tension"
             android:paddingTop="@dimen/linearVertPadding"/>
 
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:max="100"
-            android:value="@{vm.tensionEntry.tension}"/>
+            android:progress="@{vm.tension}"/>
 
         <TextView
             android:id="@+id/locationLabel"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/location"
-            android:text="@{vm.tensionEntry.location}"/>
+            android:text="@{vm.location}"/>
 
         <TextView
             android:id="@+id/situationLabel"
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/situation"
-            android:text="@{vm.tensionEntry.situation}"/>
+            android:text="@{vm.situation}"/>
 
         <TextView
             android:id="@+id/skillUsedLabel"
@@ -67,7 +67,7 @@
             android:id="@+id/skillUsedEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{vm.tensionEntry.skill}"
+            android:text="@{vm.skillUsed}"
             android:hint="@string/skill_used"/>
 
         <TextView
@@ -82,7 +82,7 @@
             android:id="@+id/skillDurationSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:value="@{vm.tensionEntry.skillDuartion}"
+            android:progress="@{vm.skillDuration}"
             android:max="120"/>
 
         <TextView
@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:max="100"
-            android:value="@{vm.tensionEntry.tension}"/>
+            android:progress="@{vm.tensionAfterSkill}"/>
 
         <Space
             android:layout_width="wrap_content"

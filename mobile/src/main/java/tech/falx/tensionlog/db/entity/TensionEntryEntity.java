@@ -15,36 +15,35 @@ import java.util.Date;
  * @author <a href="mailto:kschneider@codingfalx.de">Kristoffer Schneider alias falx<a>
  */
 
-@Entity(nameInDb = "StrainEntry", indexes = {@Index(value = "date DESC")})
+@Entity(nameInDb = "TensionEntry", indexes = {@Index(value = "date DESC")})
 public class TensionEntryEntity extends BaseEntity {
     @NotNull
     private Date date;
     @NotNull
-    private Integer strain;
+    private Integer tension;
     private String location;
     private String situation;
     private String skill;
-    private Integer strainAfter;
+    private Integer tensionAfter;
     private String emotion;
     private Integer skillDuration;
     private String notes;
 
-    @Generated(hash = 2108906173)
-    public TensionEntryEntity(@NotNull Date date, @NotNull Integer strain, String location,
-                              String situation, String skill, Integer strainAfter, String emotion, Integer skillDuration,
-                              String notes) {
+    @Generated(hash = 37104366)
+    public TensionEntryEntity(@NotNull Date date, @NotNull Integer tension, String location, String situation, String skill,
+            Integer tensionAfter, String emotion, Integer skillDuration, String notes) {
         this.date = date;
-        this.strain = strain;
+        this.tension = tension;
         this.location = location;
         this.situation = situation;
         this.skill = skill;
-        this.strainAfter = strainAfter;
+        this.tensionAfter = tensionAfter;
         this.emotion = emotion;
         this.skillDuration = skillDuration;
         this.notes = notes;
     }
 
-    @Generated(hash = 606828352)
+    @Generated(hash = 938401278)
     public TensionEntryEntity() {
     }
 
@@ -64,12 +63,12 @@ public class TensionEntryEntity extends BaseEntity {
         this.date = date;
     }
 
-    public Integer getStrain() {
-        return this.strain;
+    public Integer getTension() {
+        return this.tension;
     }
 
-    public void setStrain(Integer strain) {
-        this.strain = strain;
+    public void setTension(Integer tension) {
+        this.tension = tension;
     }
 
     public String getLocation() {
@@ -96,12 +95,12 @@ public class TensionEntryEntity extends BaseEntity {
         this.skill = skill;
     }
 
-    public Integer getStrainAfter() {
-        return this.strainAfter;
+    public Integer getTensionAfter() {
+        return this.tensionAfter;
     }
 
-    public void setStrainAfter(Integer strainAfter) {
-        this.strainAfter = strainAfter;
+    public void setTensionAfter(Integer tensionAfter) {
+        this.tensionAfter = tensionAfter;
     }
 
     public String getEmotion() {

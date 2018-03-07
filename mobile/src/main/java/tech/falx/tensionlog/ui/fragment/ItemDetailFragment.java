@@ -5,6 +5,7 @@
 package tech.falx.tensionlog.ui.fragment;
 
 import android.app.Activity;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -13,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import tech.falx.tensionlog.R;
+import tech.falx.tensionlog.db.entity.TensionEntryEntity;
 import tech.falx.tensionlog.dummy.DummyContent;
 import tech.falx.tensionlog.ui.activity.ItemDetailActivity;
 import tech.falx.tensionlog.ui.activity.ItemListActivity;
+import tech.falx.tensionlog.ui.binding.ItemDetailBinding;
+import tech.falx.tensionlog.ui.viewmodel.TensionEntryVM;
 
 /**
  * A fragment representing a single Item detail screen.
@@ -64,12 +68,9 @@ public class ItemDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.item_detail, container, false);
+        ItemDetailBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-        }
-
-        return rootView;
+        TensionEntryVM tvm = new TensionEntryVM(new TensionEntryEntity());
+        return binding.getRoot();
     }
 }
