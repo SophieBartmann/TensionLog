@@ -2,7 +2,6 @@
 <!--
   ~ Copyright (c) 2018. Kristoffer Schneider Licensed under the Apache-2.0 License.
   -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="tech.falx.tensionlog">
 
@@ -16,23 +15,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="tech.falx.tensionlog.ui.activity.ItemListActivity"
+            android:name=".ui.activity.ItemListActivity"
             android:label="@string/title_item_list"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!--            <intent-filter>
+                            <action android:name="android.intent.action.MAIN"/>
+
+                            <category android:name="android.intent.category.LAUNCHER"/>
+                        </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".ui.activity.ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".ui.activity.ItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="tech.falx.tensionlog.ui.activity.ItemListActivity"/>
+        </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity
-            android:name="tech.falx.tensionlog.ui.activity.ItemDetailActivity"
-            android:label="@string/title_item_detail"
-            android:parentActivityName="tech.falx.tensionlog.ui.activity.ItemListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="tech.falx.tensionlog.ui.activity.ItemListActivity"/>
         </activity>
     </application>
 
