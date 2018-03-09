@@ -16,11 +16,12 @@ import tech.falx.tensionlog.db.entity.DaoSession;
  */
 
 public class App extends Application {
+
     public static final boolean IS_DB_ENCRYPTED = false;
     private static final String ENCRYPTED_DB = "tension_db_encrypted";
     private static final String NON_ENCRYPTED_DB = "tension_db_unencrypted";
     private DaoSession daoSession;
-
+    private State currentState;
 
     /**
      * Called when the application is starting, before any activity, service,
@@ -61,5 +62,24 @@ public class App extends Application {
 
     public DaoSession getDaoSession() {
         return daoSession;
+    }
+
+    public State getCurrentState() {
+        return this.currentState;
+    }
+
+    public void setCurrentState(State newState) {
+        this.currentState = newState;
+    }
+
+    public enum State {
+        DETAILS,
+        TODAY_OVERVIEW,
+        CAL_OVERVIEW,
+        STATISTICS,
+        EXPORT,
+        SHARE,
+        SEND,
+        SETTINGS,
     }
 }

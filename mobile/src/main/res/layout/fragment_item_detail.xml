@@ -1,10 +1,13 @@
 <!--
   ~ Copyright (c) 2018. Kristoffer Schneider Licensed under the Apache-2.0 License.
   -->
-
 <layout>
+
     <data class="tech.falx.tensionlog.ui.binding.ItemDetailBinding">
-        <variable name="vm" type="tech.falx.tensionlog.ui.viewmodel.TensionEntryVM"/>
+
+        <variable
+            name="vm"
+            type="tech.falx.tensionlog.ui.viewmodel.TensionEntryVM"/>
     </data>
 
     <android.support.v7.widget.LinearLayoutCompat
