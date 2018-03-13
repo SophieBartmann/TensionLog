@@ -7,18 +7,36 @@
 
     <data class="tech.falx.tensionlog.ui.binding.DayListBinding">
 
+        <variable
+            name="vm"
+            type="tech.falx.tensionlog.ui.viewmodel.EntryListVM"/>
     </data>
 
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-                                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                                            xmlns:tools="http://schemas.android.com/tools"
-                                            android:id="@+id/item_list"
-                                            android:name="strainlog.falx.strainlog.ItemListFragment"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_marginLeft="16dp"
-                                            android:layout_marginRight="16dp"
-                                            app:layoutManager="LinearLayoutManager"
-                                            tools:context="tech.falx.tensionlog.ui.activity.ItemListActivity"
-                                            tools:listitem="@layout/item_list_content"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#9A306C"
+            android:text="@{vm.date}"
+            android:textAlignment="center"
+            android:textColor="#ffffffff"
+            android:textSize="23dp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/item_list"
+            android:name="strainlog.falx.strainlog.ItemListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:context="tech.falx.tensionlog.ui.activity.ItemListActivity"
+            tools:listitem="@layout/item_list_content"/>
+    </LinearLayout>
 </layout>

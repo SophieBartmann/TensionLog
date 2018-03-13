@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import tech.falx.tensionlog.App;
 import tech.falx.tensionlog.R;
 import tech.falx.tensionlog.db.entity.TensionEntryEntity;
 import tech.falx.tensionlog.ui.activity.EntryListFragment;
@@ -30,10 +31,11 @@ public class EntryDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ItemDetailBinding binding = DataBindingUtil.inflate(inflater,
-                                                            R.layout.fragment_item_detail,
+                                                            R.layout.fragment_entry_detail,
                                                             container,
                                                             false);
-        TensionEntryVM tvm = new TensionEntryVM(new TensionEntryEntity());
+        TensionEntryVM tvm = new TensionEntryVM(new TensionEntryEntity(),
+                                                ((App) getActivity().getApplication()).getDaoSession());
         binding.setVm(tvm);
         View view = binding.getRoot();
         ButterKnife.bind(this, view);

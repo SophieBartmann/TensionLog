@@ -11,5 +11,11 @@ import tech.falx.tensionlog.db.entity.DaoSession;
  */
 
 public abstract class BaseVM {
-    public abstract void saveEntities(DaoSession daoSession);
+    protected final DaoSession daoSession;
+
+    public BaseVM(DaoSession daoSession) {
+        this.daoSession = daoSession;
+    }
+
+    public abstract void saveEntities();
 }

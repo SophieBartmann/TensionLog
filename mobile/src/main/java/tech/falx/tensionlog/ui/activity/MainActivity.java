@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import tech.falx.tensionlog.App;
 import tech.falx.tensionlog.R;
+import tech.falx.tensionlog.ui.Navigator;
 import tech.falx.tensionlog.ui.fragment.EntryDetailFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -29,21 +29,23 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
-
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+    private Navigator navigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.navigator = Navigator.getInstance();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
+        fab.hide();
         fab.setOnClickListener((view) -> {
-            this.navigateTo(new EntryDetailFragment(), true);
+            this.navigator.navigateTo(new EntryDetailFragment(), true);
             ((App) this.getApplication()).setCurrentState(App.State.DETAILS);
         });
 
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         // Create new fragment and transaction
         Fragment itemDetailFragment = new EntryDetailFragment();
-        this.navigateTo(itemDetailFragment, true);
+        this.navigator.navigateTo(itemDetailFragment, true);
         ((App) getApplication()).setCurrentState(App.State.DETAILS);
 
     }
@@ -122,21 +124,8 @@ public class MainActivity extends AppCompatActivity
 
         drawer.closeDrawer(GravityCompat.START);
         if (nextFragment != null) {
-            navigateTo(nextFragment, true);
+            this.navigator.navigateTo(nextFragment, true);
         }
         return true;
-    }
-
-    private void navigateTo(@NonNull Fragment fragment, boolean addToStack) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
-        transaction.replace(R.id.fragment_container, fragment);
-        if (addToStack)
-            transaction.addToBackStack(null);
-
-        // Commit the transaction
-        transaction.commit();
     }
 }
