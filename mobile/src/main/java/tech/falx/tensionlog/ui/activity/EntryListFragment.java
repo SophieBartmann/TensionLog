@@ -4,6 +4,7 @@
 
 package tech.falx.tensionlog.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,16 +14,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import tech.falx.tensionlog.App;
 import tech.falx.tensionlog.R;
-import tech.falx.tensionlog.dummy.DummyContent;
+import tech.falx.tensionlog.db.entity.TensionEntryEntity;
 import tech.falx.tensionlog.ui.binding.DayListBinding;
 import tech.falx.tensionlog.ui.fragment.EntryDetailFragment;
+import tech.falx.tensionlog.ui.viewmodel.EntryListVM;
 
 /**
  * An activity representing a list of Items. This activity
@@ -36,11 +44,6 @@ public class EntryListFragment extends Fragment {
 
     @BindView(R.id.item_list)
     protected View recyclerView;
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
-    private boolean mTwoPane;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,27 +61,33 @@ public class EntryListFragment extends Fragment {
                                                          container,
                                                          false);
         View view = binding.getRoot();
+        binding.setVm(new EntryListVM(new Date(),
+                                      ((App) getActivity().getApplication()).getDaoSession()));
         ButterKnife.bind(this, view);
         setupRecyclerView((RecyclerView) recyclerView);
         return view;
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+        List<TensionEntryEntity> list = new ArrayList<>();
+        list.add(new TensionEntryEntity());
+        list.get(0).setDate(new Date());
+        list.get(0).setTension(30);
+        list.add(new TensionEntryEntity());
+        list.get(1).setDate(new Date());
+        list.get(1).setTension(90);
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this,
-                                                                  DummyContent.ITEMS,
-                                                                  mTwoPane));
+                                                                  list
+        ));
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final EntryListFragment mParentActivity;
-        private final List<DummyContent.DummyItem> mValues;
-        private final boolean mTwoPane;
-        private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
+        private final List<TensionEntryEntity> mValues;
+        private final View.OnClickListener mOnClickListener = view -> {
+            TensionEntryEntity item = (TensionEntryEntity) view.getTag();
 //                if (mTwoPane) {
 //                    Bundle arguments = new Bundle();
 //                    arguments.putString(EntryDetailFragment.ARG_ITEM_ID, item.id);
@@ -94,15 +103,12 @@ public class EntryListFragment extends Fragment {
 //
 //                    context.startActivity(intent);
 //                }
-            }
         };
 
         SimpleItemRecyclerViewAdapter(EntryListFragment parent,
-                                      List<DummyContent.DummyItem> items,
-                                      boolean twoPane) {
+                                      List<TensionEntryEntity> items) {
             mValues = items;
             mParentActivity = parent;
-            mTwoPane = twoPane;
         }
 
         @Override
@@ -112,10 +118,13 @@ public class EntryListFragment extends Fragment {
             return new ViewHolder(view);
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.itemLayout.setBackgroundColor(0x00ff40);
+            DateFormat format = SimpleDateFormat.getTimeInstance();
+            holder.mIdView.setText(format.format(mValues.get(position).getDate()));
+            holder.mContentView.setText(mValues.get(position).getTension().toString());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -129,11 +138,13 @@ public class EntryListFragment extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView mIdView;
             final TextView mContentView;
+            final LinearLayout itemLayout;
 
             ViewHolder(View view) {
                 super(view);
                 mIdView = view.findViewById(R.id.id_text);
                 mContentView = view.findViewById(R.id.content);
+                itemLayout = view.findViewById(R.id.list_item_layout);
             }
         }
     }

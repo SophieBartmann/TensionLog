@@ -3,7 +3,10 @@
   ~ Copyright (c) 2018. Kristoffer Schneider Licensed under the Apache-2.0 License.
   -->
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data class="tech.falx.tensionlog.ui.binding.DayListBinding">
 
@@ -12,31 +15,45 @@
             type="tech.falx.tensionlog.ui.viewmodel.EntryListVM"/>
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:app="http://schemas.android.com/apk/res-auto"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical">
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#9A306C"
-            android:text="@{vm.date}"
-            android:textAlignment="center"
-            android:textColor="#ffffffff"
-            android:textSize="23dp"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/item_list"
-            android:name="strainlog.falx.strainlog.ItemListFragment"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            app:layoutManager="LinearLayoutManager"
-            tools:context="tech.falx.tensionlog.ui.activity.ItemListActivity"
-            tools:listitem="@layout/item_list_content"/>
-    </LinearLayout>
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:background="#9A306C"
+                android:text="@{vm.date}"
+                android:textAlignment="center"
+                android:textColor="#ffffffff"
+                android:textSize="23sp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/item_list"
+                android:name="strainlog.falx.strainlog.ItemListFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layoutManager="LinearLayoutManager"
+                tools:context="tech.falx.tensionlog.ui.activity.ItemListActivity"
+                tools:listitem="@layout/item_list_content"/>
+        </LinearLayout>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/add_to_day_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:onClick="@{() -> vm.add()}"
+            android:src="@drawable/ic_add"
+            fab:fab_label="add"/>
+    </android.support.design.widget.CoordinatorLayout>
+
 </layout>

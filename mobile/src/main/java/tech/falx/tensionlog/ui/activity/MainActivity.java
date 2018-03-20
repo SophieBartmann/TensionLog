@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import tech.falx.tensionlog.App;
 import tech.falx.tensionlog.R;
 import tech.falx.tensionlog.ui.Navigator;
+import tech.falx.tensionlog.ui.fragment.CalendarOverviewFragment;
 import tech.falx.tensionlog.ui.fragment.EntryDetailFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Navigator.createInstance(this);
         this.navigator = Navigator.getInstance();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -105,17 +107,24 @@ public class MainActivity extends AppCompatActivity
         App app = ((App) getApplication());
         App.State state = app.getCurrentState();
         Fragment nextFragment = null;
+        int titleId = -1;
         if (id == R.id.nav_today_overview && !state.equals(App.State.TODAY_OVERVIEW)) {
             app.setCurrentState(App.State.TODAY_OVERVIEW);
             nextFragment = new EntryListFragment();
+            titleId = R.string.title_item_list;
         } else if (id == R.id.nav_cal_overview && !state.equals(App.State.CAL_OVERVIEW)) {
             app.setCurrentState(App.State.CAL_OVERVIEW);
+            nextFragment = new CalendarOverviewFragment();
+            titleId = R.string.title_calendar_overview;
         } else if (id == R.id.nav_statistics && !state.equals(App.State.STATISTICS)) {
             app.setCurrentState(App.State.STATISTICS);
+            titleId = R.string.title_statistics;
         } else if (id == R.id.nav_settings && !state.equals(App.State.SETTINGS)) {
             app.setCurrentState(App.State.SETTINGS);
+            titleId = R.string.title_settings;
         } else if (id == R.id.nav_share && !state.equals(App.State.SHARE)) {
             app.setCurrentState(App.State.SHARE);
+            titleId = R.string.title_share;
         } else if (id == R.id.nav_send && !state.equals(App.State.SEND)) {
             app.setCurrentState(App.State.SEND);
         } else if (id == R.id.nav_export && !state.equals(App.State.EXPORT)) {
@@ -125,6 +134,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         if (nextFragment != null) {
             this.navigator.navigateTo(nextFragment, true);
+            this.setTitle(titleId);
         }
         return true;
     }

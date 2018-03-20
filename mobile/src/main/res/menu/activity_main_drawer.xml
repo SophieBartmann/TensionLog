@@ -9,6 +9,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_add_nav"
+            android:title="@string/new_entry"/>
+        <item
             android:id="@+id/nav_today_overview"
             android:icon="@drawable/ic_today"
             android:title="@string/menu_today"/>

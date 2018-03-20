@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Anspannungs Log</string>
+    <string name="title_entry_detail">Eintragdetails</string>
+    <string name="title_item_list">Einträge</string>
+    <string name="title_item_detail">Eintragdetails</string>
+    <string name="tension">Anspannung</string>
+    <string name="location">Ort</string>
+    <string name="situation">Situation</string>
+    <string name="skill_used">Verwendeter Skill</string>
+    <string name="skill_duration">Dauer des Skills</string>
+    <string name="tension_after_label">Anspannung danach</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="menu_overview">Kalenderübersicht</string>
+    <string name="menu_statistics">Statistiken</string>
+    <string name="menu_export">Exportieren</string>
+    <string name="settings">Einstellungen</string>
+    <string name="share">Teilen</string>
+    <string name="send">Senden</string>
+    <string name="menu_today">Heute</string>
+    <string name="date">Datum</string>
+    <string name="title_activity_main">Anspannungs Log</string>
+    <string name="title_settings">Einstellungen</string>
+    <string name="title_share">Teilen</string>
+    <string name="title_statistics">Statistiken</string>
+    <string name="title_calendar_overview">Kalenderübersicht</string>
+    <string name="new_entry">Neuer Eintrag</string>
+</resources>

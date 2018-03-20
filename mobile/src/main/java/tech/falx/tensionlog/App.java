@@ -36,7 +36,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         DaoMaster.DevOpenHelper dbHelper = null;
-        Database db = null;
+        Database db;
         if (IS_DB_ENCRYPTED) {
             dbHelper = new DaoMaster.DevOpenHelper(this, ENCRYPTED_DB);
             // TODO: CHANGE!

@@ -13,6 +13,7 @@ import tech.falx.tensionlog.db.entity.DaoSession;
 public abstract class BaseVM {
     protected final DaoSession daoSession;
 
+
     public BaseVM(DaoSession daoSession) {
         this.daoSession = daoSession;
     }
