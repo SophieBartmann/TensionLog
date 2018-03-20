@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/derfalx/TensionLog.svg?branch=master)](https://travis-ci.org/derfalx/TensionLog)
+
 # TensionLog
 Privacy and Usability focused Android App to Log Tension
 
