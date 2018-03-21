@@ -7,15 +7,15 @@ android:
     - platform-tools
     - tools
     - build-tools-27.0.3
-    - android-26
-    - sys-img-arm64-v8a-android-26
+    - android-25
+    - sys-img-arm64-v8a-android-25
     
     
 before_install:
  - chmod +x gradlew
  
 before_script:
-  - echo no | android create avd --force -n test -t android-26 --abi arm64-v8a
+  - echo no | avdmanager create avd -k "system-images;android-25;google_apis;arm64-v8a" -n test
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
