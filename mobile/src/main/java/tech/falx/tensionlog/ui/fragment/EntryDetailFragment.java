@@ -26,6 +26,9 @@ import tech.falx.tensionlog.ui.viewmodel.TensionEntryVM;
  * in a {@link EntryListFragment}.
  */
 public class EntryDetailFragment extends Fragment {
+
+    public static final String ARG_ENTRY_ID = "ARG_ENTRY_ID";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

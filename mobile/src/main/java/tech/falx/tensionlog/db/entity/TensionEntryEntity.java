@@ -10,6 +10,7 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.NotNull;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -25,7 +26,7 @@ public class TensionEntryEntity extends BaseEntity {
     @NotNull
     protected Date updated = new Date();
     @NotNull
-    private Date date = new Date();
+    private Calendar date = Calendar.getInstance();
     @NotNull
     private Integer tension = 0;
     private String location = "";
@@ -36,11 +37,11 @@ public class TensionEntryEntity extends BaseEntity {
     private Integer skillDuration = 0;
     private String notes = "";
 
-    @Generated(hash = 1368940128)
+    @Generated()
     public TensionEntryEntity(Long id,
                               @NotNull Date created,
                               @NotNull Date updated,
-                              @NotNull Date date,
+                              @NotNull Calendar date,
                               @NotNull Integer tension,
                               String location,
                               String situation,
@@ -75,11 +76,11 @@ public class TensionEntryEntity extends BaseEntity {
         this.id = id;
     }
 
-    public Date getDate() {
+    public Calendar getDate() {
         return this.date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 

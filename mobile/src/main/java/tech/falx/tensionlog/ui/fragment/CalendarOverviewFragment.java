@@ -13,6 +13,7 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import tech.falx.tensionlog.App;
 import tech.falx.tensionlog.R;
+import tech.falx.tensionlog.ui.binding.CalendarOverviewBinding;
 import tech.falx.tensionlog.ui.binding.DayListBinding;
 import tech.falx.tensionlog.ui.viewmodel.EntryListVM;
 
@@ -33,13 +34,13 @@ public class CalendarOverviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        DayListBinding binding = DataBindingUtil.inflate(inflater,
-                                                         R.layout.fragment_calendar_overview,
-                                                         container,
-                                                         false);
+        CalendarOverviewBinding binding = DataBindingUtil.inflate(inflater,
+                                                                  R.layout.fragment_calendar_overview,
+                                                                  container,
+                                                                  false);
         View view = binding.getRoot();
-        binding.setVm(new EntryListVM(new Date(),
-                                      ((App) getActivity().getApplication()).getDaoSession()));
+//        binding.setVm(new EntryListVM(new Date(),
+//                                      ((App) getActivity().getApplication()).getDaoSession()));
         ButterKnife.bind(this, view);
         return view;
     }

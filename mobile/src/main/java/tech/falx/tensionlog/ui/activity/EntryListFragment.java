@@ -17,9 +17,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +31,8 @@ import butterknife.ButterKnife;
 import tech.falx.tensionlog.App;
 import tech.falx.tensionlog.R;
 import tech.falx.tensionlog.db.entity.TensionEntryEntity;
+import tech.falx.tensionlog.db.entity.TensionEntryEntityDao;
+import tech.falx.tensionlog.ui.Navigator;
 import tech.falx.tensionlog.ui.binding.DayListBinding;
 import tech.falx.tensionlog.ui.fragment.EntryDetailFragment;
 import tech.falx.tensionlog.ui.viewmodel.EntryListVM;
@@ -41,6 +46,11 @@ import tech.falx.tensionlog.ui.viewmodel.EntryListVM;
  * item details side-by-side using two vertical panes.
  */
 public class EntryListFragment extends Fragment {
+
+    /***
+     * Bundle argument to hold the day which entries should be listed in this view
+     */
+    public static final String ARG_DAY_TO_LIST = "ARG_DAY_TO_LIST";
 
     @BindView(R.id.item_list)
     protected View recyclerView;
@@ -69,13 +79,15 @@ public class EntryListFragment extends Fragment {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+        Date dayToListLower = (Date)this.getArguments().get(ARG_DAY_TO_LIST);
+        Calendar cal = Calendar.getInstance();
+//       cal.set(dayToListLower.);
+//        TensionEntryEntityDao tensionEntryEntityDao = ((App) this.getActivity().getApplication())
+//                .getDaoSession()
+//                .getTensionEntryEntityDao();
+//        QueryBuilder<TensionEntryEntity> queryBuilder = tensionEntryEntityDao.queryBuilder()
+//                .where(TensionEntryEntityDao.Properties.Date)
         List<TensionEntryEntity> list = new ArrayList<>();
-        list.add(new TensionEntryEntity());
-        list.get(0).setDate(new Date());
-        list.get(0).setTension(30);
-        list.add(new TensionEntryEntity());
-        list.get(1).setDate(new Date());
-        list.get(1).setTension(90);
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this,
                                                                   list
         ));
@@ -84,31 +96,20 @@ public class EntryListFragment extends Fragment {
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final EntryListFragment mParentActivity;
         private final List<TensionEntryEntity> mValues;
         private final View.OnClickListener mOnClickListener = view -> {
             TensionEntryEntity item = (TensionEntryEntity) view.getTag();
-//                if (mTwoPane) {
-//                    Bundle arguments = new Bundle();
-//                    arguments.putString(EntryDetailFragment.ARG_ITEM_ID, item.id);
-//                    EntryDetailFragment fragment = new EntryDetailFragment();
-//                    fragment.setArguments(arguments);
-//                    mParentActivity.getSupportFragmentManager().beginTransaction()
-//                                   .replace(R.id.item_detail_container, fragment)
-//                                   .commit();
-//                } else {
-//                    Context context = view.getContext();
-//                    Intent intent = new Intent(context, EntryDetailFragment.class);
-//                    intent.putExtra(EntryDetailFragment.ARG_ITEM_ID, item.id);
-//
-//                    context.startActivity(intent);
-//                }
+            Bundle bundle = new Bundle();
+            bundle.putLong(EntryDetailFragment.ARG_ENTRY_ID, item.getId());
+            EntryDetailFragment entryDetailFragment = new EntryDetailFragment();
+            entryDetailFragment.setArguments(bundle);
+            Navigator navigator = Navigator.getInstance();
+            navigator.navigateTo(entryDetailFragment, true);
         };
 
         SimpleItemRecyclerViewAdapter(EntryListFragment parent,
                                       List<TensionEntryEntity> items) {
             mValues = items;
-            mParentActivity = parent;
         }
 
         @Override
