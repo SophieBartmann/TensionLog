@@ -26,7 +26,7 @@ public class TensionEntryEntity extends BaseEntity {
     @NotNull
     protected Date updated = new Date();
     @NotNull
-    private Calendar date = Calendar.getInstance();
+    private Date date = new Date();
     @NotNull
     private Integer tension = 0;
     private String location = "";
@@ -37,18 +37,10 @@ public class TensionEntryEntity extends BaseEntity {
     private Integer skillDuration = 0;
     private String notes = "";
 
-    @Generated()
-    public TensionEntryEntity(Long id,
-                              @NotNull Date created,
-                              @NotNull Date updated,
-                              @NotNull Calendar date,
-                              @NotNull Integer tension,
-                              String location,
-                              String situation,
-                              String skill,
-                              Integer tensionAfter,
-                              String emotion,
-                              Integer skillDuration,
+    @Generated(hash = 1368940128)
+    public TensionEntryEntity(Long id, @NotNull Date created, @NotNull Date updated,
+                              @NotNull Date date, @NotNull Integer tension, String location, String situation,
+                              String skill, Integer tensionAfter, String emotion, Integer skillDuration,
                               String notes) {
         this.id = id;
         this.created = created;
@@ -76,11 +68,12 @@ public class TensionEntryEntity extends BaseEntity {
         this.id = id;
     }
 
-    public Calendar getDate() {
+    public Date getDate() {
         return this.date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(Date date) {
+        this.date = date;
         this.date = date;
     }
 
